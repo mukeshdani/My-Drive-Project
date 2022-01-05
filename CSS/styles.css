@@ -1,3 +1,9 @@
-h1 {
-    color: blue;
+#btnAddFolder {
+    border-radius: 7px;
+    background-color: yellowgreen;
+    border: 4px solid black;
+    color: black;
+    width: 200px;
+    height: 29px;
+    margin-left: 600px;
 }
