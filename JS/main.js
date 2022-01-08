@@ -1,11 +1,18 @@
 (function(){
-    let btnAddFolder = document.querySelector("#btnAddFolder");
-    let divContainer = document.querySelector("#divContainer");
-
-    btnAddFolder.addEventListener("click", addFolder);
-
+    let btnaddFolder = document.querySelector("#addFolder");
+    let btnaddTextFolder = document.querySelector("#addTextFolder");
+ 
+    btnaddFolder.addEventListener("click" , addFolder);
+    btnaddTextFolder.addEventListener("click", addTextFile);
+ 
     function addFolder(){
-        alert("hello");
+         let fname = prompt("Enter Folder name ");
+         console.log(fname);
+    }
+ 
+    function addTextFile(){
+        let tfname = prompt("Enter File Name ");
+        console.log(tfname);
     }
 
 
