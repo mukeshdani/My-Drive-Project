@@ -16,4 +16,30 @@
     }
 
 
+    function deleatFolder(){
+
+    }
+    function addTextFolder(){
+ 
+    }
+    function renameFolder(){
+ 
+    }
+    function renameTextFile(){
+ 
+    }
+    function viewFolder(){
+ 
+    }
+    function viewTextFile(){
+ 
+    }
+    function saveToStorage(){
+ 
+    }
+    function loadFromStorage(){
+ 
+    }
+    loadFromStorage();
+
 })();
