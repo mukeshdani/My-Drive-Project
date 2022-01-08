@@ -1,9 +1,34 @@
-#btnAddFolder {
-    border-radius: 7px;
-    background-color: yellowgreen;
-    border: 4px solid black;
-    color: black;
-    width: 200px;
-    height: 29px;
-    margin-left: 600px;
-}
+#header{
+    border: 1px solid black;
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+ }
+ #header button{
+     border-radius: 10px;
+     padding: 20px;
+     margin: 10px;
+     cursor: pointer;
+ }
+ #header button:hover{
+     background-color: aqua;
+     transform: scale(1.05);
+ }
+ 
+ #breadcrumb{
+     border: 1px solid black;
+     margin: 10px;
+     padding: 10px;
+ }
+ #container{
+     border: 1px solid black;
+     margin: 10px;
+     padding: 10px;
+ }
+ #app{
+     border: 1px solid black;
+     margin: 10px;
+     padding: 10px;
+ }
+ 
