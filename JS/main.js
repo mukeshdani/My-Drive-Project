@@ -14,15 +14,20 @@
  
     function addFolder(){
         let rname = prompt("Enter folder name");
+        if ( rname!= null){
+            rname= rname.trim();
+          }
         if (!rname){
             // empty name validation 
             alert("Entered name is not allowed .");
+            return ;
         }
-        rname= rname.trim();
+       
         // unique name validation 
         let alreadyExists = resources.some(r=>r.rname == rname && r.pid ==cfid);
         if (alreadyExists==true){
             alert(rname +"  is already in use . try some other name.");
+            return ;
         }
         let pid = cfid;
   
@@ -52,7 +57,38 @@
  
     }
     function renameFolder(){
- 
+        let nrname = prompt("Enter folder name");
+        if ( nrname!= null){
+          nrname= nrname.trim();
+        }
+      if (!nrname){
+          // empty name validation 
+          alert("Entered name is not allowed .");
+          return ;
+      }
+  
+      let spanRename = this ; 
+      let divFolder = spanRename.parentNode;
+      let divName = divFolder.querySelector("[purpose=name]");
+      let orname = divName.innerHTML;
+      let ridTBU = parseInt(divFolder.getAttribute("rid"));
+      if ( nrname == orname){
+          alert("Please Enter a new name ");
+          return;
+      }
+  
+      let alreadyExists = resources.some(r=>r.rname==nrname && r.pid == cfid );
+      if (alreadyExists == true ){
+          alter(nrname = "already exists.");
+          return ; 
+      }
+      // Change HTML
+      divName.innerHTML = nrname;
+      // chnage Ram 
+      let resource= resources.find(r=>r.rid == ridTBU);
+      resource.rname = nrname;
+       // change storage 
+       saveToStorage();
     }
     function renameTextFile(){
  
@@ -88,7 +124,9 @@
     }
     function loadFromStorage(){
         let rjson = localStorage.getItem("data");
-        if(!!rjson){
+        if(!rjson){
+            return;
+        }
             resources=JSON.parse(rjson);
             for ( let i = 0 ; i< resources.length;i++){
 
@@ -100,7 +138,7 @@
                 rid = resources[i].rid;
             }
         } 
-    }
+    
     }
     loadFromStorage();
 
