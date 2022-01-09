@@ -14,7 +14,16 @@
  
     function addFolder(){
         let rname = prompt("Enter folder name");
-       
+        if (!rname){
+            // empty name validation 
+            alert("Entered name is not allowed .");
+        }
+        rname= rname.trim();
+        // unique name validation 
+        let alreadyExists = resources.some(r=>r.rname == rname && r.pid ==cfid);
+        if (alreadyExists==true){
+            alert(rname +"  is already in use . try some other name.");
+        }
         let pid = cfid;
   
         rid++;
