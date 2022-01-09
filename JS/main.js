@@ -7,16 +7,17 @@
 
     let resources = [];
    let cfid = -1;
+   let rid =0;
  
     btnaddFolder.addEventListener("click" , addFolder);
     btnaddTextFolder.addEventListener("click", addTextFile);
  
     function addFolder(){
         let rname = prompt("Enter folder name");
-        let rid = resources.length;
+       
         let pid = cfid;
   
-        
+        rid++;
         addFolderHTML(rname,rid , pid);
         // persist
         // save 
@@ -77,7 +78,20 @@
         localStorage.setItem("data", rjson);
     }
     function loadFromStorage(){
- 
+        let rjson = localStorage.getItem("data");
+        if(!!rjson){
+            resources=JSON.parse(rjson);
+            for ( let i = 0 ; i< resources.length;i++){
+
+                if ( resources[i].pid ==cfid){
+                addFolderHTML(resources[i].rname , resources[i].rid, resources[i].pid);
+            }
+
+            if ( resources[i].rid > rid ){
+                rid = resources[i].rid;
+            }
+        } 
+    }
     }
     loadFromStorage();
 
