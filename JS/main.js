@@ -45,8 +45,33 @@
     }
 
     function addTextFile(){
-        let tfname = prompt("Enter text file's name");
-        console.log(tfname);
+        let rname = prompt("Enter text file's name");
+        if(rname != null){
+            rname = rname.trim();
+        }
+
+        if(!rname){ // empty name validation
+            alert("Empty name is not allowed.");
+            return;
+        }
+
+        // uniqueness validation
+        let alreadyExists = resources.some(r => r.rname == rname && r.pid == cfid);
+        if(alreadyExists == true){
+            alert(rname + " is already in use. Try some other name");
+            return;
+        }
+
+        let pid = cfid;
+        rid++;
+        addTextFileHTML(rname, rid, pid);
+        resources.push({
+            rid: rid,
+            rname: rname,
+            rtype: "text-file",
+            pid: cfid
+        });
+        saveToStorage();
     }
 
     function deleteFolder(){
@@ -58,7 +83,8 @@
         let fidTBD = parseInt(divFolder.getAttribute("rid"));
         let fname = divName.innerHTML;
 
-        let sure = confirm(`Are you sure you want to delete ${fname}?`);
+        let childrenExists = resources.some(r => r.pid == fidTBD);
+        let sure = confirm(`Are you sure you want to delete ${fname}?` + (childrenExists? ". It also has children.": ""));
         if(!sure){
             return;
         }
@@ -83,8 +109,6 @@
     }
 
     function deleteTextFile(){
-        
-
     }
 
     // empty, old, unique
@@ -125,7 +149,6 @@
     }
 
     function renameTextFile(){
-
     }
 
     function viewFolder(){
@@ -148,7 +171,11 @@
         divContainer.innerHTML = "";
         for(let i = 0; i < resources.length; i++){
             if(resources[i].pid == cfid){
-                addFolderHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                if(resources[i].rtype == "folder"){
+                    addFolderHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                } else if(resources[i].rtype == "text-file"){
+                    addTextFileHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                }
             }
         }
     }
@@ -170,13 +197,16 @@
         divContainer.innerHTML = "";
         for(let i = 0; i < resources.length; i++){
             if(resources[i].pid == cfid){
-                addFolderHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                if(resources[i].rtype == "folder"){
+                    addFolderHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                } else if(resources[i].rtype == "text-file"){
+                    addTextFileHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                }
             }
         }
     }
 
     function viewTextFile(){
-
     }
 
     function addFolderHTML(rname, rid, pid){
@@ -198,6 +228,25 @@
         divContainer.appendChild(divFolder);
     }
 
+    function addTextFileHTML(rname, rid, pid){
+        let divTextFileTemplate = templates.content.querySelector(".text-file");
+        let divTextFile = document.importNode(divTextFileTemplate, true); // makes a copy
+
+        let spanRename = divTextFile.querySelector("[action=rename]");
+        let spanDelete = divTextFile.querySelector("[action=delete]");
+        let spanView = divTextFile.querySelector("[action=view]");
+        let divName = divTextFile.querySelector("[purpose=name]");
+
+        spanRename.addEventListener("click", renameTextFile);
+        spanDelete.addEventListener("click", deleteTextFile);
+        spanView.addEventListener("click", viewTextFile);
+        divName.innerHTML = rname;
+        divTextFile.setAttribute("rid", rid);
+        divTextFile.setAttribute("pid", pid);
+
+        divContainer.appendChild(divTextFile);
+    }
+
     function saveToStorage(){
         let rjson = JSON.stringify(resources); // used to convert jso to a json string which can be saved
         localStorage.setItem("data", rjson);
@@ -212,7 +261,11 @@
         resources = JSON.parse(rjson);
         for(let i = 0; i < resources.length; i++){
             if(resources[i].pid == cfid){
-                addFolderHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                if(resources[i].rtype == "folder"){
+                    addFolderHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                } else if(resources[i].rtype == "text-file"){
+                    addTextFileHTML(resources[i].rname, resources[i].rid, resources[i].pid);
+                }
             }
 
             if(resources[i].rid > rid){
