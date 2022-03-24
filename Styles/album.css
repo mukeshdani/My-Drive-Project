@@ -1,0 +1,137 @@
+.pop-up-album-app {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 10;
+    transition: 200ms ease-in-out;
+    height: 95%;
+    width: 95%;
+    background-color: #0cbaba;
+    background-image: linear-gradient(300deg, #000000 0%, #130f40 74%);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    color:whitesmoke;
+}
+
+.pop-up-album-app.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.album-app-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+.album-app-title {
+    font-size: 1.5rem;
+}
+
+.album-app-close-btn {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+.album-app-menubar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: fit-content;
+    padding-left: 1%;
+    padding-top: .25%;
+    padding-bottom: .25%;
+    padding-right: 1%;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.album-app-menu-item {
+    height: 1.5rem;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.album-app-menu-item.material-icons {
+    font-size: 1.5rem;
+}
+
+.album-app-menu-item.material-icons:hover {
+    box-shadow: 0px 0px 4px 4px #ffffff;
+    background-color: black;
+}
+
+.album-app-image-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70%;
+}
+
+.album-app-image-area {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #181818e3;
+}
+
+.album-app-image-area img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.album-app-navigate-left-container,
+.album-app-navigate-right-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(300deg, #000000 0%, #130f40 74%);
+    background-color: #111111ab;
+    cursor: pointer;
+}
+
+.nav-arrow {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 2rem;
+}
+
+.album-app-images {
+    height: 100%;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    display: flex;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.album-app-thumbnail {
+    height: 95%;
+    
+}
+
+.album-app-thumbnail img {
+    border: .4rem solid rgb(136, 136, 136);
+    max-height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: all 100ms ease-out;
+}
+.album-app-thumbnail img.active {
+    border: .4rem solid white;
+    transform: scale(1.12);
+}

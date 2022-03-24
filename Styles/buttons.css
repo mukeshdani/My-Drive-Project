@@ -1,0 +1,54 @@
+
+.buttons-container{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+.main-btns{
+    border: none;
+    outline: none;
+    border: 3px solid whitesmoke;
+    padding: .5rem;
+    cursor: pointer;
+    color: azure;
+    border-radius: 1rem;
+    background-color: black;
+    transition: all 100ms ease-in-out;
+}
+.main-btns:hover{
+    background-color: #130f40;
+    color: lightcoral;
+    border: 3px solid beige;
+    transform: scale(1.1);
+}
+.main-btns:active{
+    box-shadow: 0px 0px 4px 4px rgba(255,255,255,0.75);
+}
+
+
+.pop-up-btns,.pop-up-btns-2 ,.pop-up-btns-4{
+    background-color: white;
+    margin-right: 10%;
+    display: flex;
+    gap: 1rem;
+}
+.pop-up-btns button,.pop-up-btns-2 button,.pop-up-btns-4 button{
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: 1rem;
+    padding: .25rem;
+}
+.pop-up-btns button:hover,.pop-up-btns-2 button:hover,.pop-up-btns-4 button:hover{
+    background-color: #66fcf1;
+    border-radius: .3rem;
+}
+.pop-up-btns button:active,.pop-up-btns-2 button:active,.pop-up-btns-4 button:active{
+    box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.75);
+    transform: scale(.95);
+}

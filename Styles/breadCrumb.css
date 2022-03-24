@@ -1,0 +1,34 @@
+.bread-crumb-container{
+    pointer-events: none;
+    width: fit-content;
+    height:fit-content ;
+    margin-top: 1rem;
+    margin-left: 20%;
+    margin-right: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: whitesmoke;
+    border-bottom: 2px solid #c3c5c7;
+    padding-left: .5rem;
+    padding-right: .5rem;
+    gap:.25rem;
+    background-color: black;
+    z-index: 1000;
+}
+.bread-crumb-container img{
+    filter: invert(100%);
+}
+.img-path{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.2rem;
+}
+a.path{
+    cursor: pointer;
+}
+.img-path:last-of-type > a{
+    color: rgb(252, 59, 85);
+}

@@ -1,85 +1,207 @@
-<html>
-    <!-- Head tag start -->
-    <head>
-        <title>Google Drive Clone</title>
-        <!-- Style Sheet -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="./CSS/styles.css" />
-
-    </head>
-    <!-- Body -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Management System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body{
+            font-family: 'Bree Serif', serif;
+            background-color: #202124;
+            min-height: 100vh;
+        }
+        *{
+            font-size: 20px;
+            margin: 0;
+            padding: 0;
+        } 
+        @media screen and (max-width:1440px){
+            *{
+                font-size : 18px;
+            }
+        }
+        @media screen and (max-width:1024px){
+            *{
+                font-size : 14px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="Styles/album.css">
+    <link rel="stylesheet" href="Styles/breadCrumb.css">
+    <link rel="stylesheet" href="Styles/buttons.css">
+    <link rel="stylesheet" href="Styles/folders.css">
+    <link rel="stylesheet" href="Styles/sidebar.css">
+    <link rel="stylesheet" href="Styles/sreachArea.css">
+    <link rel="stylesheet" href="Styles/textFileEditor.css">
+    <link rel="stylesheet" href="Styles/userInput.css">
+    <link rel="stylesheet" href="Styles/contextMenu.css">
+</head>
 <body>
-    
-    <div id="header">
-        <button id="addFolder">Add Folder</button>
-        <button id="addTextFile">Add Text File</button>
+    <div class="pop-up-input">
+        <input type="text" placeholder="Enter name here" id="pop-up-input-content">
+        <div class="pop-up-btns">
+            <button id="pop-up-input-ok">Ok</button>
+            <button id="pop-up-input-cancel">Cancel</button>
+        </div>
     </div>
 
-    <div id="breadcrumb">
-        <a purpose="path" rid="-1">Root</a>
-    </div>
-
-    <div id="container">
-    </div>
-
-    <div id="app">
-        <div id="app-title-bar">
-            <div id="app-title">title will come here</div>
-            <div id="win-actions">
-                <span class="material-icons">minimize</span>
-                <span class="material-icons">fullscreen</span>
-                <span class="material-icons">close</span>
-            </div>
+    <div class="pop-up-text-app">
+        <div class="text-app-titlebar">
+            <div class="text-app-title">Title here</div>
+            <div class="text-app-close-btn">&times;</div>
         </div>
-        <div id="app-menu-bar">
-            
-        </div>
-        <div id="app-body"></div>
-    </div>
-
-    <template id="templates">
-        <div class="folder" rid="" pid="">
-            <span action="rename">rename</span>
-            <span action="delete">delete</span>
-            <span action="view">view</span>
-            <div purpose="name"></div>
-        </div>
-        <div class="text-file" rid="" pid="">
-            <span action="rename">rename</span>
-            <span action="delete">delete</span>
-            <span action="view">view</span>
-            <div purpose="name"></div>
-        </div>
-        <a purpose="path" rid="-1"></a>
-        <div purpose="notepad-menu" class="notepad-menu">
-            <span action="save" class="material-icons">save</span>
-            <span pressed="false" action="bold" class="material-icons">format_bold</span>
-            <span pressed="false" action="italic" class="material-icons">format_italic</span>
-            <span pressed="false" action="underline" class="material-icons">format_underline</span>
-            <input type="color" action="bg-color" />
-            <input type="color" action="fg-color" />
-            <select action="font-family">
+        <hr>
+        <div class="text-app-menubar">
+            <span class="text-app-menu-item material-icons " action="bold">format_bold</span>
+            <span class="text-app-menu-item material-icons " action="underline">format_underline</span>
+            <span class="text-app-menu-item material-icons " action="save">save</span>
+            <span class="text-app-menu-item material-icons " action="italic">format_italic</span>
+            <input class="text-app-menu-item" type="color" purpose="bg-color" title="Background Color">
+            <input class="text-app-menu-item" type="color" purpose="fg-color" title="Text Color">
+            <select class="text-app-menu-item" purpose="font-family">
                 <option value="monospace">monospace</option>
                 <option value="serif">serif</option>
                 <option value="sans-serif">sans-serif</option>
                 <option value="cursive">cursive</option>
             </select>
-            <select action="font-size">
-                <option value="8">8</option>
-                <option value="10">10</option>
-                <option value="12">12</option>
-                <option value="14">14</option>
-                <option value="16">16</option>
-                <option value="18">18</option>
-                <option value="20">20</option>
-                <option value="22">22</option>
+            <select class="text-app-menu-item" purpose="font-size">
+                <option value="10pt">10</option>
+                <option value="12pt">12</option>
+                <option value="14pt">14</option>
+                <option value="16pt">16</option>
+                <option value="18pt">18</option>
+                <option value="20pt">20</option>
+                <option value="22pt">22</option>
+                <option value="24pt">24</option>
+                <option value="26pt">26</option>
+                <option value="28pt">28</option>
             </select>
+            <input class="text-app-menu-item" type="color" purpose="file-color" title="File Color">
+            <span class="text-app-menu-item material-icons " action="download">file_download</span>
+            <span class="warning-text">Unsaved data will be lost. Please save before closing.</li>        
         </div>
-        <div purpose="notepad-body" class="notepad-body">
-            <textarea>I am the notepad's body</textarea>
+        <hr>
+        <div class="text-app-textarea-container">
+            <textarea class="text-app-textarea"></textarea>
+        </div>
+    </div>
+
+    <div class="pop-up-album-app">
+        <div class="album-app-titlebar">
+            <div class="album-app-title">Title here</div>
+            <div class="album-app-close-btn">&times;</div>
+        </div>
+        <hr>
+        <div class="album-app-menubar">
+            <span class="album-app-menu-item material-icons" action="upload-img">upload</span>
+            <input type="file" id="uploadImgActual" style="display: none;" accept="image/*">
+            <span class="album-app-menu-item material-icons" action="download-img">download</span>     
+            <span class="album-app-menu-item material-icons" action="add-img">add_photo_alternate</span>
+            <span class="album-app-menu-item material-icons" action="nav-left">arrow_back_ios_new</span>
+            <span class="album-app-menu-item material-icons" action="play">play_arrow</span>
+            <span class="album-app-menu-item material-icons" action="nav-right">arrow_forward_ios</span>
+            <span class="album-app-menu-item material-icons" action="delete">delete</span>            
+        </div>
+        <hr>
+        <div class="album-app-image-container">
+            <div class="album-app-navigate-left-container" btn="left"><span class="nav-arrow material-icons">arrow_back_ios_new</span></div>
+            <div class="album-app-image-area">
+                <img src="" alt="" id="album-main-img">
+            </div>
+            <div class="album-app-navigate-right-container" btn="right"><span class="nav-arrow material-icons">arrow_forward_ios</span></div>
+        </div>
+        <div class="album-app-images">
+            <template class="image-thumbnails">
+                <div class="album-app-thumbnail">
+                    <img src="">
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <div id="overlay" class=""></div>
+
+    <div class="sidebar-btn">&equiv;</div>
+    <div class="sidebar-container">
+        <div class="project-name-container">
+            <div class="project-name">File Management Sys</div>
+        </div>
+        <hr>
+        <div class="resource-type-list">
+            <div class="resource-list-item root-list">Home</div>
+            <div class="resource-list-item folder-list"><span class="material-icons">folder</span>Folders</div>
+            <div class="resource-list-item file-list"><span class="material-icons">description</span>Text Files</div>
+            <div class="resource-list-item album-list"><span class="material-icons">photo_library</span>Albums</div>
+        </div>
+    </div>
+
+    <div class="search-bar-container">
+        <div class="search-bar">
+            <input type="text" placeholder="Search here" id="search-input">
+            <span class="material-icons" id="search">search</span>
+        </div>
+    </div>
+    <hr>
+
+    <div class="buttons-container">
+        <button class = "main-btns" id="add-folder">Add Folder</button>
+        <button class = "main-btns" id="add-file">Add File</button>
+        <button class = "main-btns" id="add-album">Add Album</button>
+    </div>
+
+    <div class="bread-crumb-container">
+        <a class="path">Home</a>
+    </div>
+
+
+    <div class="resources-container">   
+    </div>
+    
+    <div id="main-context-menu">
+        <div id="cm-add-folder" class="item-c-mm">Add new Folder</div>
+        <div id="cm-add-file" class="item-c-mm">Add new File</div>
+        <div id="cm-add-album" class="item-c-mm">Add new Album</div>
+        <input id="hidden-upload-btn" class="hidden-input" type="file">
+        <hr>
+        <div id="cm-change-bg" class="item-c-mm">Change background</div> 
+        <div id="cm-reset-bg" class="item-c-mm">Reset Background</div>
+    </div>
+
+    <template class="resources-template">
+        <div class="resource-box">
+            <div class="icon-menu">
+                <img src="" class="r-img" action="set-img-src" style="height: 100px; width: 100px;">
+                <div class="mini-menu-container">
+                    <button class="three-dots">&#10247</button>
+                    <ul class="mini-menu">
+                        <li action="view">View</li>
+                        <li action="delete">Delete</li>
+                        <li action="rename">Rename</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="resource-name" action="set-name"></div>
         </div>
     </template>
-    <!-- Script start -->
-   <script type="text/javascript" src="./JS/main.js"></script>
+
+
+    <template class="breadcrumb-template">
+        <div class="img-path">
+            <img src="Images/right-arrow-icon-3.svg" style="height: 20px;">
+            <a class="path"></a>
+        </div>
+    </template>
+    <script src="./JS/resourcesSys.js"></script>
+    <script src="./JS/albumApp.js"></script>
+    <script src="./JS/textApp.js"></script>
+    <script src="./JS/sidebar.js"></script>
+    <script src="./JS/searchbar.js"></script>
+    
+
 </body>
 </html>

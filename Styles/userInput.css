@@ -1,0 +1,47 @@
+#overlay ,#overlay-2,#overlay-3,#overlay-4 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.35);
+    transition: 200ms ease-in-out;
+    pointer-events: none;
+    z-index: 9;
+}
+#overlay.active,#overlay-2.active,#overlay-3.active,#overlay-4.active{
+    opacity: 1;
+    pointer-events: all;
+}
+.pop-up-input,.pop-up-input-2,.pop-up-input-4{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-150%) scale(0);
+    z-index: 10;
+    transition: 200ms ease-in-out;
+
+    height: 8rem;
+    width: 24rem;
+    background-color: white;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: .75rem;
+    border-radius: 1rem;
+}
+.pop-up-input.active,.pop-up-input-2.active,.pop-up-input-4.active{
+    transform: translate(-50%,-150%) scale(1);
+}
+.pop-up-input input,.pop-up-input-2 input,.pop-up-input-4 input{
+    border: none;
+    outline: none;
+    height: 2rem;
+    
+    border-bottom: 1px solid gray;
+    align-self: center;
+    width: 80%;
+}
